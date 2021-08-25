@@ -1,0 +1,11 @@
+{
+  "name": "tweeter-clone-master",
+  "version": "1.0.0",
+  "description": "tweeter a project on tweeter clone",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "debo9210",
+  "license": "MIT"
+}
