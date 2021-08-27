@@ -1,34 +1,28 @@
-const JwtStrategy = require('passport-jwt').Strategy;
-const ExtractJwt = require('passport-jwt').ExtractJwt;
-const mongoose = require('mongoose');
-const User = mongoose.model('users');
+//load user model
+const User = require('../models/User');
 
-const options = {
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-  secretOrKey: require('./keys').secretOrKey,
-};
+const followUser = (req, res) => {
+  //   console.log(req.params.action);
+  //   console.log(req.params.name);
+  //   console.log(req.params.id);
 
-module.exports = (passport) => {
-  passport.serializeUser((user, cb) => {
-    cb(null, user);
-  });
-
-  passport.deserializeUser((obj, cb) => {
-    cb(null, obj);
-  });
-
-  passport.use(
-    new JwtStrategy(options, (jwt_payload, done) => {
-      User.findById(jwt_payload.id)
-        .then((user) => {
-          if (user) {
-            return done(null, user);
+  User.findOne({ name: req.params.name })
+    .then((user) => {
+      if (user) {
+        if (req.params.action === 'Follow') {
+          user.following.unshift(req.params.id);
+        } else if (req.params.action === 'Following') {
+          for (let i = 0; i < user.following.length; i++) {
+            if (user.following[i] === req.params.id) {
+              user.following.splice(i, 1);
+            }
           }
-          return done(null, false);
-        })
-        .catch((err) => {
-          return done(err, false);
-        });
+        }
+
+        user.save();
+      }
     })
-  );
+    .catch((err) => console.log(err));
 };
+
+module.exports = { followUser };

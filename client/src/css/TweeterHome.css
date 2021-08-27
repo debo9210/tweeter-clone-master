@@ -1,0 +1,872 @@
+.TweeterHomeContainer {
+  /* border: 1px solid orangered; */
+  display: flex;
+  justify-content: space-between;
+  width: 65%;
+  margin: 20px auto 0 auto;
+}
+
+.TweeterHome {
+  /* border: 1px solid blue; */
+  width: 71%;
+}
+
+.TweeterHomeAside {
+  /* border: 1px solid green; */
+  width: 27%;
+}
+
+.UserTweet {
+  border: 1px solid #fff;
+  background: #ffffff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+}
+
+.UserTweetContainer {
+  /* border: 1px solid yellow; */
+  width: 96%;
+  margin: 10px auto 5px auto;
+}
+
+.UserTweetContainer p {
+  border-bottom: 1px solid #e0e0e0;
+  margin: 0 0 5px 0;
+  padding-bottom: 3px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.035em;
+  color: #4f4f4f;
+}
+
+.TweetBox {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.TweetBox textarea {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 14px;
+  color: #4f4f4f;
+  border: none;
+  /* border: 1px solid red; */
+  margin-left: 10px;
+  resize: none;
+  width: 100%;
+  height: 50px;
+  outline: none;
+}
+
+.TweetBox textarea::placeholder {
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: -0.035em;
+  color: #bdbdbd;
+}
+
+.TweetButtonContainer {
+  /* border: 1px solid green; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.IconBtnContainer {
+  /* border: 1px solid orange; */
+  display: flex;
+  margin-left: 40px;
+  width: 45%;
+}
+
+.IconBtn {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.IconBtn i {
+  cursor: pointer;
+}
+
+.IconBtn i,
+.IconBtn span {
+  color: #2f80ed;
+  font-size: 16px;
+}
+
+.IconBtn span {
+  font-size: 10px;
+  margin-left: 3px;
+}
+
+.IconBtn2 {
+  margin-left: 5px;
+}
+
+.TweetButton {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: flex-end;
+  width: 45%;
+}
+
+.TweetButton button {
+  background: #2f80ed;
+  color: #fff;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.035em;
+  padding: 5px 18px;
+  cursor: pointer;
+}
+
+.WhoCanReplyContainer {
+  display: none;
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  width: 17%;
+  position: absolute;
+  z-index: 2;
+  left: 215px;
+  top: 210px;
+}
+
+.WhoCanReplyBody {
+  /* border: 1px solid orange; */
+  width: 93%;
+  margin: 7px auto 10px auto;
+}
+
+.WhoCanReplyContainer p {
+  margin: 0;
+}
+
+.WhoCanReplyText {
+  font-family: 'Poppins', sans-serif;
+  color: #4f4f4f;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.ChooseWhoCanReplyText {
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.035em;
+  color: #828282;
+}
+
+.WhoCanReply {
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  padding: 8px 7px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.WhoCanReply:hover {
+  background: #f2f2f2;
+}
+
+.WhoCanReply i {
+  font-size: 16px;
+  color: #333333;
+}
+
+.WhoCanReply span {
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.035em;
+  color: #4f4f4f;
+  margin-left: 5px;
+}
+
+.TweetContainer {
+  /* border: 1px solid blue; */
+  margin-top: 10px;
+}
+
+.Retweeeted {
+  /* border: 1px solid blue; */
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.Retweeeted i {
+  color: #828282;
+  font-size: 15px;
+  margin-right: 5px;
+}
+
+.RetweetedBy {
+  margin: 0;
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 19px;
+  letter-spacing: -0.035em;
+  color: #828282;
+}
+
+.Tweets {
+  /* border: 1px solid green; */
+  background: #fff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.TweetOwnerContainer {
+  /* border: 1px solid orange; */
+  display: flex;
+  width: 100%;
+}
+
+.TweetOwnerPic {
+  width: 32px;
+  /* width: 5%; */
+  height: 35px;
+  border-radius: 5px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-right: 10px;
+}
+
+.TweetOwner {
+  height: 35px;
+  width: 90%;
+}
+
+.TweetOwner p {
+  margin: 0;
+}
+
+.TweetOwnerName {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -0.035em;
+  color: #000000;
+  cursor: pointer;
+}
+
+.TweetOwnerName:hover {
+  text-decoration: underline;
+}
+
+.TweetOwnerTime {
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 16px;
+  letter-spacing: -0.035em;
+  color: #bdbdbd;
+}
+
+.TweetText {
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: -0.035em;
+  color: #4f4f4f;
+}
+
+.TweetImageContainer {
+  /* border: 1px solid blue; */
+}
+
+.TweetImage {
+  width: 100%;
+  height: 328.22px;
+  border-radius: 8px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.Tweet-Comment-Saved-Count {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-end;
+  /* border: 1px solid red; */
+}
+
+.CountText {
+  margin: 0 0 0 15px;
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.035em;
+  color: #bdbdbd;
+}
+
+.TweetActionContainer {
+  border-top: 1px solid #f2f2f2;
+  border-bottom: 1px solid #f2f2f2;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5px;
+  padding: 3px 0;
+}
+
+.TweetAction {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+
+.TweetAction:hover {
+  background: #f2f2f2;
+}
+
+.TweetAction p {
+  margin: 0;
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 19px;
+  letter-spacing: -0.035em;
+  color: #4f4f4f;
+}
+
+.TweetAction i {
+  color: #4f4f4f;
+  font-size: 14px;
+  margin-right: 7px;
+}
+
+.UserTweetReplyContainer {
+  /* border: 1px solid red; */
+  display: flex;
+  margin: 8px 0 15px 0;
+}
+
+.ReplyInputGroup {
+  /* border: 1px solid green; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 10px;
+  width: 100%;
+  background: #fafafa;
+  border: 1px solid #f2f2f2;
+  border-radius: 6px;
+}
+
+.ReplyInputGroup input {
+  width: 92%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  font-size: 14px;
+  color: #4f4f4f;
+  margin-left: 5px;
+}
+
+.ReplyInputGroup input::placeholder {
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 19px;
+  letter-spacing: -0.035em;
+  color: #bdbdbd;
+}
+
+.ReplyInputGroup label {
+  width: 6%;
+  height: 20px;
+  cursor: pointer;
+}
+
+.ReplyInputGroup i {
+  color: #bdbdbd;
+  font-size: 20px;
+}
+
+.UsersTweetReplyContainer {
+  /* border: 1px solid red; */
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.hide_Show_ReplyContainer {
+  /* border: 1px solid red; */
+  overflow-y: auto;
+}
+
+.hide_Show_ReplyContainer::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
+}
+
+.hide_Show_ReplyContainer::-webkit-scrollbar {
+  width: 3px;
+  background-color: #f5f5f5;
+}
+
+.hide_Show_ReplyContainer::-webkit-scrollbar-thumb {
+  background-color: #979494;
+}
+
+.UsersTweetReply {
+  /* border: 1px solid blue; */
+  width: 93.4%;
+}
+
+.UsersTweetReplyBody {
+  border: 1px solid #fafafa;
+  background: #fafafa;
+  border-radius: 8px;
+  padding: 3px 10px;
+}
+
+.TweetReplyNameContainer {
+  display: flex;
+  align-items: center;
+}
+
+.TweetReplyName {
+  margin: 0 -5px 0 0;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 21px;
+  letter-spacing: -0.035em;
+  color: #000000;
+}
+
+.ReplyImage {
+  /* border: 1px solid green; */
+  border-radius: 6px;
+  height: 100px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 5px 0;
+}
+
+.UsersTweetReplyText {
+  /* border: 1px solid green; */
+  margin: 8px 0 10px 0;
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: -0.035em;
+  color: #4f4f4f;
+}
+
+.LikesCounterContainer {
+  /* border: 1px solid green; */
+  display: flex;
+  margin-top: 5px;
+}
+
+.LikesCounterContainer p {
+  margin: 0;
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.035em;
+  color: #bdbdbd;
+}
+
+.Likes {
+  /* border: 1px solid blue; */
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.Likes i {
+  color: #bdbdbd;
+  font-size: 14px;
+  margin-right: 3px;
+}
+
+.TrendsContainer,
+.WhoToFollowContainer {
+  background: #ffffff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  padding: 7px 15px;
+  margin-bottom: 15px;
+}
+
+.Trends,
+.WhoToFollow {
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 20px;
+}
+
+.Trends p,
+.WhoToFollow p {
+  margin: 0;
+  padding-bottom: 4px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.035em;
+  color: #4f4f4f;
+}
+
+.TrendList {
+  /* border: 1px solid blue; */
+  margin-bottom: 20px;
+}
+
+.TrendListTitle {
+  margin: 0 0 6px 0;
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: -0.035em;
+  color: #333333;
+}
+
+.TrendListText {
+  margin: 0;
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: -0.035em;
+  color: #828282;
+}
+
+.WhoToFollow {
+  margin-bottom: 0;
+}
+
+.WhoToFollow p {
+  padding-top: 5px;
+}
+
+.FollowSuggestion {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.FollowSuggestionContainer {
+  /* border: 1px solid blue; */
+  border-bottom: 1px solid #e0e0e0;
+  padding: 20px 0 13px 0;
+  /* margin-bottom: 10px; */
+}
+
+.FollowSuggestionTitle p {
+  margin: 0;
+}
+
+.FollowSuggestionName {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.035em;
+  color: #000000;
+  cursor: pointer;
+}
+
+.FollowSuggestionName:hover {
+  text-decoration: underline;
+}
+
+.FollowSuggestionFollowers {
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 16px;
+  letter-spacing: -0.035em;
+  color: #828282;
+}
+
+.FollowBtn {
+  display: flex;
+  align-items: center;
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 12px;
+  letter-spacing: -0.035em;
+  border: none;
+  outline: none;
+  background: #2f80ed;
+  border-radius: 4px;
+  color: #fff;
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+.FollowBtn i {
+  font-size: 13px;
+  margin-right: 3px;
+}
+
+.SuggestionBio {
+  /* border: 1px solid red; */
+  margin: 15px 0;
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 15px;
+  letter-spacing: -0.035em;
+  color: #828282;
+}
+
+.CoverPhoto,
+.NoCoverPhoto {
+  width: 100%;
+  height: 200px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.CoverPhoto {
+  border-radius: 5px;
+}
+
+.NoCoverPhoto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: grey;
+}
+
+.NoCoverPhoto p {
+  /* border: 1px solid red; */
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 20px;
+  letter-spacing: -0.035em;
+  color: #fff;
+}
+
+.NoCoverPhoto label {
+  display: flex;
+  align-items: center;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  margin-bottom: 30px;
+  padding: 5px 15px;
+  cursor: pointer;
+  text-transform: capitalize;
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: -0.035em;
+  background: rgb(238, 234, 234);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.NoCoverPhoto i {
+  font-size: 20px;
+}
+
+label input {
+  display: none;
+}
+
+.OthersProfileAboutContainer {
+  /* border: 1px dashed blue; */
+  display: flex;
+  background: #ffffff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  width: 65%;
+  padding: 10px 20px;
+  position: absolute;
+  top: 200px;
+  z-index: 1;
+}
+
+.OthersProfileImageContainer {
+  /* border: 1px solid yellow; */
+  width: 122px;
+  height: 122px;
+  margin-right: 15px;
+  border-radius: 8px;
+  background: #fff;
+  /* background-position: center; */
+  padding: 2px;
+  position: relative;
+  z-index: 1;
+  top: -50px;
+}
+
+.OthersProfileImage {
+  width: 105px;
+  height: 115px;
+  border-radius: 8px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.OthersProfileAbout {
+  width: 80%;
+  /* border: 1px solid red; */
+}
+
+.OthersProfileAbout p {
+  margin: 0;
+}
+
+.ProfileAbout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  /* border: 1px solid peru; */
+  width: 70%;
+}
+
+.ProfileAboutFollowing {
+  margin: 0;
+  display: flex;
+}
+
+.ProfileAboutName,
+.ProfileAboutFollowing {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 30px;
+  letter-spacing: -0.035em;
+  color: #333333;
+}
+
+.ProfileAboutFollowing {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.ProfileAboutFollowing span {
+  margin-left: 3px;
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 16px;
+  letter-spacing: -0.035em;
+  color: #828282;
+}
+
+.FollowBtnContainer {
+  /* border: 1px solid green; */
+  width: 15%;
+  height: 20%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ProfileAboutInfo {
+  /* border: 1px solid orangered; */
+  font-family: 'Noto Sans', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.035em;
+  color: #828282;
+  width: 100%;
+}
+
+.ShowProfile {
+  /* border: 1px solid orangered; */
+  width: 65%;
+  margin: 110px auto 0 auto;
+}
+
+.OthersProfileMain {
+  /* display: blue; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.ActionListContainer {
+  border: 1px solid #ffffff;
+  background: #ffffff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.ActionList {
+  /* border: 1px solid purple; */
+  list-style-type: none;
+  padding: 0;
+  margin: 15px 0;
+}
+
+.ActionListItem {
+  /* border: 1px solid cyan; */
+  border-radius: 0px 4px 4px 0px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  color: #828282;
+  padding: 5px 20px;
+  cursor: pointer;
+}
+
+.OthersProfileMain main {
+  /* border: 1px solid green; */
+}

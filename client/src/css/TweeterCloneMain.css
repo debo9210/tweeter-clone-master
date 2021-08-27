@@ -1,0 +1,131 @@
+/* navbar styles */
+.TweeteCloneMainNavBar {
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+  /* padding: 10px 0; */
+}
+
+.Brand {
+  /* border: 1px solid orange; */
+  display: flex;
+  margin-left: 40px;
+  padding: 10px 0;
+}
+
+.NavLink {
+  /* border: 1px solid red; */
+  width: 30%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.LinkItem {
+  padding: 0 15px 10px 15px;
+  margin: 0;
+  color: #828282;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: -0.035em;
+}
+
+.LinkItem:hover {
+  cursor: pointer;
+}
+
+.UserMenu {
+  /* border: 1px solid purple; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 40px;
+  /* width: 10%; */
+}
+
+.userPhoto {
+  width: 32px;
+  height: 35px;
+  border-radius: 5px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.UserName {
+  margin: 0 15px 0 5px;
+  font-size: 14px;
+}
+
+.UserMenu i {
+  cursor: pointer;
+  color: #333333;
+}
+
+.userMenuDropDown {
+  display: none;
+  /* opacity: 0; */
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  position: absolute;
+  z-index: 2;
+  top: 60px;
+  right: 40px;
+  width: 172px;
+  /* transition: opacity 0.5s ease-in-out; */
+}
+
+.MenuOptions {
+  /* border: 1px solid blue; */
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  margin: 5px 10px;
+  padding: 7px 0 7px 7px;
+  cursor: pointer;
+  /* background: #f2f2f2; */
+}
+
+.MenuOptionTop {
+  margin-top: 10px;
+}
+
+.MenuOptionBottom {
+  margin-bottom: 20px;
+}
+
+.MenuOptions:hover {
+  background: #f2f2f2;
+}
+
+.MenuOptions i {
+  color: #4f4f4f;
+  font-size: 18px;
+  margin-right: 7px;
+}
+
+.MenuText {
+  /* border: 1px solid red; */
+  margin: 0;
+  font-family: 'Noto Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: -0.035em;
+  color: #4f4f4f;
+}
+
+.MenuOptionBottom i,
+.MenuOptionBottom p {
+  color: #eb5757;
+}
+
+hr {
+  margin: 15px 10px;
+  border: 1px solid #e0e0e0;
+}

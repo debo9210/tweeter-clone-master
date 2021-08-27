@@ -1,0 +1,152 @@
+.TweeterCloneSettingsContainer {
+  /* border: 1px solid blue; */
+  width: 50%;
+  margin: 40px auto 20px auto;
+  background: #fff;
+  border-radius: 15px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.TweeterCloneSettings {
+  width: 90%;
+  margin: 10px auto 30px auto;
+}
+
+.BackContainer {
+  /* border: 1px solid red; */
+  display: flex;
+  align-items: center;
+  width: 15%;
+  margin: 10px;
+}
+
+.BackContainer i {
+  transform: rotate(180deg);
+}
+
+.BackContainer p {
+  margin: 0 0 0 10px;
+}
+
+.BackContainer p,
+.BackContainer i {
+  color: #1a91da;
+  cursor: pointer;
+}
+
+.TweeterCloneSettings h2 {
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+
+.InputSettingsGroupContainer {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+}
+
+.InputSettingsGroup {
+  /* border: 1px solid red; */
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  padding: 5px 10px;
+  /* height: 40px; */
+  border: 1px solid #c4cfd6;
+  border-radius: 5px;
+}
+
+.InputSettingsGroup small {
+  color: #1a91da;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.InputSettingsGroup input,
+.InputSettingsGroup textarea {
+  outline: none;
+  font-size: 18px;
+  font-weight: 100;
+  color: #898b8e;
+  border: none;
+}
+
+.InputSettingsGroup textarea {
+  resize: none;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.passError {
+  display: block;
+  margin: 0 0 10px 10px;
+  color: #e75582;
+}
+
+.BirthdateSelectContainer {
+  /* border: 1px solid red; */
+  display: flex;
+  width: 65%;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.BirthdateSelectContainer select {
+  height: 40px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid #c4cfd6;
+  font-size: 18px;
+  font-weight: 100;
+  color: #898b8e;
+}
+
+.BirthdateSelectContainer select[name='month'] {
+  width: 43%;
+}
+
+.BirthdateSelectContainer select[name='day'] {
+  width: 20%;
+}
+
+.BirthdateSelectContainer select[name='year'] {
+  width: 27%;
+}
+
+.AddImageContainer {
+  /* border: 1px solid orange; */
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 20px;
+}
+
+.PhotoContainer {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.AddImageContainer input[type='file'] {
+  display: none;
+}
+
+.InputFileUpload {
+  cursor: pointer;
+  margin-left: 20px;
+}
+
+.confirmBtn {
+  width: 100%;
+  background: #1a91da;
+  color: #fff;
+  outline: none;
+  border: none;
+  padding: 15px 0;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+}
