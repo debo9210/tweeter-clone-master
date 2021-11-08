@@ -48,7 +48,7 @@ const Login = () => {
       setUserEmail('');
       setUserPass('');
     }
-  }, []);
+  }, [history, isAuthenticated]);
 
   return (
     <div>

@@ -4,6 +4,7 @@ import Jamie from '../images/jaime.jpg';
 import Cersei from '../images/cersei.jpeg';
 import PhotoWeather from '../images/photo-weather.jpeg';
 import Woodey from '../images/woodey.jpeg';
+import TweetsComponent from '../components/TweetsComponent';
 
 export const tempTweetContainer = [
   {
@@ -102,7 +103,7 @@ export const tweetActionOptions = [
   { chat_bubble_outline: 'Comments' },
   { sync: 'Retweet' },
   { favorite_border: 'Like' },
-  { bookmark_border: 'Saved' },
+  { bookmark_border: 'Save' },
 ];
 
 export const iconOptions = [
@@ -122,3 +123,54 @@ export const selectActionHandler = (e) => {
 };
 
 export const actionItem = ['Tweets', 'Tweets & replies', 'Media', 'Likes'];
+
+export const tweetComponent = (
+  tweetArr,
+  user,
+  othersProfileLinkHandler,
+  tweetActionHandler,
+  commentHandler,
+  setCommentHandler,
+  // comment,
+  setCommentIDHandler,
+  setCommentImageHandler,
+  commentLikeHandler,
+  windowWidth
+) => {
+  return (
+    <TweetsComponent
+      tweetsArray={tweetArr}
+      user={user}
+      othersProfileLinkHandler={othersProfileLinkHandler}
+      tweetActionHandler={tweetActionHandler}
+      commentHandler={commentHandler}
+      setCommentHandler={setCommentHandler}
+      // comment={comment}
+      setCommentIDHandler={setCommentIDHandler}
+      setCommentImageHandler={setCommentImageHandler}
+      commentLikeHandler={commentLikeHandler}
+      windowWidth={windowWidth}
+    />
+  );
+};
+
+export const tweetOptions = (el, text) => {
+  return el.props.tweetsArray.length === 0 ? (
+    <div className='SavedTweet'>
+      <h3>{text}</h3>
+    </div>
+  ) : (
+    el
+  );
+};
+
+export const containsObject = (obj, list) => {
+  var i;
+  for (i = 0; i < list.length; i++) {
+    if (list[i] === obj) {
+      return true;
+    }
+  }
+
+  return false;
+};

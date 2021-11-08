@@ -14,10 +14,52 @@ const TweetsComponent = ({
   tweetActionHandler,
   commentHandler,
   setCommentHandler,
-  comment,
+  // comment,
   setCommentIDHandler,
   setCommentImageHandler,
+  commentLikeHandler,
+  windowWidth,
 }) => {
+  const actionStyles = (item, twt) => {
+    const style = {
+      transform:
+        Object.values(item)[0] === 'Comments'
+          ? 'rotateY(180deg)'
+          : 'rotateY(180deg)',
+      color:
+        Object.values(item)[0] === 'Save' && twt.saved.includes(user.id)
+          ? '#2D9CDB'
+          : Object.values(item)[0] === 'Like' &&
+            twt.userLikedID.includes(user.id)
+          ? '#EB5757'
+          : Object.values(item)[0] === 'Retweet' &&
+            twt.userRetweetedID.includes(user.id)
+          ? '#27AE60'
+          : '#4f4f4f',
+      marginRight: windowWidth <= 417 && '5px',
+    };
+
+    return style;
+  };
+
+  const actionTextStyles = (item, twt) => {
+    const style = {
+      color:
+        Object.values(item)[0] === 'Save' && twt.saved.includes(user.id)
+          ? '#2D9CDB'
+          : Object.values(item)[0] === 'Like' &&
+            twt.userLikedID.includes(user.id)
+          ? '#EB5757'
+          : Object.values(item)[0] === 'Retweet' &&
+            twt.userRetweetedID.includes(user.id)
+          ? '#27AE60'
+          : '#4f4f4f',
+      fontSize: windowWidth <= 417 && '10px',
+    };
+
+    return style;
+  };
+
   return (
     <div>
       {tweetsArray &&
@@ -85,11 +127,14 @@ const TweetsComponent = ({
                   <p className='CountText'>
                     {`${abbrNum(twt.retweets.length, 2)} Retweets`}
                   </p>
-                  <p className='CountText'>{`${abbrNum(234, 2)} Saved`}</p>
+                  <p className='CountText'>{`${abbrNum(
+                    twt.saved.length,
+                    2
+                  )} Saved`}</p>
                 </div>
               </div>
 
-              <div className='TweetActionContainer'>
+              <div className='TweetActionContainer' data-twtid={twt._id}>
                 {tweetActionOptions.map((item, i) => (
                   <div
                     key={i}
@@ -97,48 +142,133 @@ const TweetsComponent = ({
                     onClick={tweetActionHandler}
                     data-twtid={twt._id}
                     data-username={user.name}
+                    data-userid={user.id}
+                    style={
+                      windowWidth <= 417
+                        ? { width: '25%', padding: '5px 8px' }
+                        : { width: '' }
+                    }
                   >
                     <i
                       className='material-icons'
-                      style={
-                        Object.values(item)[0] ===
-                        tweetActionOptions[0].chat_bubble_outline
-                          ? { transform: 'rotateY(180deg)' }
-                          : { transform: 'rotateY(0deg)' }
-                      }
+                      style={actionStyles(item, twt)}
                     >
-                      {Object.keys(item)}
+                      {Object.keys(item)[0] === 'bookmark_border' &&
+                      twt.saved.includes(user.id)
+                        ? 'bookmark'
+                        : Object.keys(item)}
                     </i>
 
-                    <p title={Object.values(item)}>{Object.values(item)}</p>
+                    <p
+                      title={
+                        Object.values(item)[0] === 'Save' &&
+                        twt.saved.includes(user.id)
+                          ? 'Saved'
+                          : Object.values(item)[0] === 'Like' &&
+                            twt.userLikedID.includes(user.id)
+                          ? 'Liked'
+                          : Object.values(item)[0] === 'Retweet' &&
+                            twt.userRetweetedID.includes(user.id)
+                          ? 'Undo Retweet'
+                          : Object.values(item)
+                      }
+                      style={actionTextStyles(item, twt)}
+                    >
+                      {Object.values(item)[0] === 'Save' &&
+                      twt.saved.includes(user.id)
+                        ? 'Saved'
+                        : Object.values(item)[0] === 'Like' &&
+                          twt.userLikedID.includes(user.id)
+                        ? 'Liked'
+                        : Object.values(item)[0] === 'Retweet' &&
+                          twt.userRetweetedID.includes(user.id)
+                        ? 'Retweeted'
+                        : Object.values(item)}
+                    </p>
                   </div>
                 ))}
               </div>
 
-              <div className='UserTweetReplyContainer'>
-                <UserPhotoComponent user={user} />
-                <div className='ReplyInputGroup'>
-                  <input
-                    onKeyDown={commentHandler}
-                    onChange={setCommentHandler}
-                    type='text'
-                    value={comment}
-                    onClick={setCommentIDHandler}
-                    placeholder='Tweet your reply'
-                    data-tweetid={twt._id}
-                  />
-                  <label>
-                    <i className='material-icons' title='Add image'>
-                      crop_original
-                    </i>
+              {twt.whoCanReply === 'Everyone' ? (
+                <div className='UserTweetReplyContainer'>
+                  <UserPhotoComponent user={user} />
+                  <div className='ReplyInputGroup'>
                     <input
-                      type='file'
-                      onChange={setCommentImageHandler}
-                      hidden
+                      onKeyDown={commentHandler}
+                      onChange={setCommentHandler}
+                      type='text'
+                      // value={comment}
+                      onClick={setCommentIDHandler}
+                      placeholder='Tweet your reply'
+                      data-tweetid={twt._id}
+                      spellCheck
                     />
-                  </label>
+                    <label>
+                      <i className='material-icons' title='Add image'>
+                        crop_original
+                      </i>
+                      <input
+                        type='file'
+                        onChange={setCommentImageHandler}
+                        hidden
+                      />
+                    </label>
+                  </div>
                 </div>
-              </div>
+              ) : twt.whoCanReply === 'People you follow' &&
+                user.followers.includes(twt.user) ? (
+                <div className='UserTweetReplyContainer'>
+                  <UserPhotoComponent user={user} />
+                  <div className='ReplyInputGroup'>
+                    <input
+                      onKeyDown={commentHandler}
+                      onChange={setCommentHandler}
+                      type='text'
+                      // value={comment}
+                      onClick={setCommentIDHandler}
+                      placeholder='Tweet your reply'
+                      data-tweetid={twt._id}
+                      spellCheck
+                    />
+                    <label>
+                      <i className='material-icons' title='Add image'>
+                        crop_original
+                      </i>
+                      <input
+                        type='file'
+                        onChange={setCommentImageHandler}
+                        hidden
+                      />
+                    </label>
+                  </div>
+                </div>
+              ) : twt.user !== user.id ? (
+                <div className='UserTweetReplyContainer'>
+                  <UserPhotoComponent user={user} />
+                  <div className='ReplyInputGroup'>
+                    <input
+                      onKeyDown={commentHandler}
+                      onChange={setCommentHandler}
+                      type='text'
+                      // value={comment}
+                      onClick={setCommentIDHandler}
+                      placeholder='Tweet your reply'
+                      data-tweetid={twt._id}
+                      spellCheck
+                    />
+                    <label>
+                      <i className='material-icons' title='Add image'>
+                        crop_original
+                      </i>
+                      <input
+                        type='file'
+                        onChange={setCommentImageHandler}
+                        hidden
+                      />
+                    </label>
+                  </div>
+                </div>
+              ) : null}
 
               <div
                 className='hide_Show_ReplyContainer'
@@ -181,12 +311,43 @@ const TweetsComponent = ({
                       </div>
 
                       <div className='LikesCounterContainer'>
-                        <div className='Likes'>
-                          <i className='material-icons'>favorite_border</i>
-                          <p>Like</p>
+                        <div
+                          className='Likes'
+                          onClick={commentLikeHandler}
+                          title={
+                            item.likes.includes(user.id) ? 'Unlike' : 'Like'
+                          }
+                          data-commentid={item._id}
+                        >
+                          <i
+                            className='material-icons'
+                            style={
+                              item.likes.includes(user.id)
+                                ? { color: '#EB5757' }
+                                : { color: '#bdbdbd' }
+                            }
+                          >
+                            {item.likes.includes(user.id)
+                              ? 'favorite'
+                              : 'favorite_border'}
+                          </i>
+                          <p
+                            style={
+                              item.likes.includes(user.id)
+                                ? { color: '#EB5757' }
+                                : { color: '#bdbdbd' }
+                            }
+                          >
+                            {item.likes.includes(user.id) ? 'Liked' : 'Like'}
+                          </p>
                         </div>
+
                         <p>
-                          <span>12k</span> Likes
+                          {item.likes.length > 1
+                            ? `${abbrNum(item.likes.length, 2)} Likes`
+                            : item.likes.length <= 1
+                            ? `${item.likes.length} Like`
+                            : ''}
                         </p>
                       </div>
                     </div>

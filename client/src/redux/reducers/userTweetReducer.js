@@ -5,8 +5,8 @@ import {
   CREATE_USER_TWEET_SUCCESS,
   GET_ALL_TWEET_REQUEST,
   GET_ALL_TWEET_SUCCESS,
-  GET_SPECIFIC_USER_TWEET_REQUEST,
-  GET_SPECIFIC_USER_TWEET_SUCCESS,
+  SAVE_TWEET_REQUEST,
+  SAVE_TWEET_SUCCESS,
   USER_COMMENT_REQUEST,
   USER_COMMENT_SUCCESS,
 } from '../constants';
@@ -40,21 +40,6 @@ export const getAllTweetReducer = (state = {}, action) => {
   }
 };
 
-export const getSpecificUserTweetsReducer = (state = {}, action) => {
-  switch (action.type) {
-    case GET_SPECIFIC_USER_TWEET_REQUEST:
-      return { ...state, loading: true };
-    case GET_SPECIFIC_USER_TWEET_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        tweets: action.payload,
-      };
-    default:
-      return state;
-  }
-};
-
 export const userCommentReducer = (state = {}, action) => {
   switch (action.type) {
     case USER_COMMENT_REQUEST:
@@ -77,6 +62,22 @@ export const userRetweetReducer = (state = {}, action) => {
       return {
         ...state,
         loading: false,
+        allTweets: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
+export const saveTweetReducer = (state = {}, action) => {
+  switch (action.type) {
+    case SAVE_TWEET_REQUEST:
+      return { ...state, loading: true };
+    case SAVE_TWEET_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        saveStatus: action.payload,
       };
     default:
       return state;

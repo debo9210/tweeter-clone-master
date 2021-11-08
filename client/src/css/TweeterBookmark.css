@@ -1,0 +1,15 @@
+.SavedTweet {
+  /* border: 1px solid peru; */
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 40px;
+  left: 30px;
+}
+
+.SavedTweet h3 {
+  text-align: center;
+  color: #464444;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 30px;
+}

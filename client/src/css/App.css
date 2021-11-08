@@ -530,3 +530,54 @@ input[name='username'] {
   text-align: center;
   color: #5b7083;
 }
+
+@media only screen and (max-width: 417px) {
+  .SignUpLoginContainer {
+    width: 90%;
+    margin: 150px auto 0 auto;
+    /* border: 1px solid red; */
+  }
+
+  .SignUpContainer {
+    /* border: 1px solid red; */
+    width: 90%;
+    margin: 30px auto;
+  }
+
+  .LandingPage {
+    display: unset;
+  }
+
+  .LandingImage {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .LandingImage img {
+    height: 50vh;
+  }
+
+  .LandingPageLoginContainer {
+    display: unset;
+    width: 43%;
+  }
+
+  .LandingPageLogin {
+    margin: 0 auto;
+  }
+
+  .LandingPage h1 {
+    /* border: 1px solid red; */
+    font-size: 50px;
+    text-align: center;
+  }
+
+  .LandingPage h3 {
+    font-size: 25px;
+    text-align: center;
+  }
+
+  .LandingPageBtn {
+    margin: 0 auto;
+  }
+}

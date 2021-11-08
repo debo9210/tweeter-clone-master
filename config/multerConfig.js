@@ -63,7 +63,7 @@ const streamImage = (req, res) => {
     if (
       file.contentType === 'image/jpeg' ||
       file.contentType === 'image/jpg' ||
-      file.contentType === 'png'
+      file.contentType === 'image/png'
     ) {
       //read stream to browser
       const readStream = gridFSBucket.openDownloadStream(file._id);

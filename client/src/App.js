@@ -6,6 +6,7 @@ import { setCurrentUser, logoutUser } from './redux/actions/authActions';
 import store from './store';
 import LandingPage from './components/LandingPage';
 import SignUp from './components/SignUp';
+// eslint-disable-next-line
 import Footer from './components/Footer';
 import Login from './components/Login';
 import TweeterCloneMain from './components/TweeterCloneMain';
@@ -43,7 +44,7 @@ function App() {
         <Route path='/login' component={Login} exact />
         <Route path='/home' component={TweeterCloneMain} exact />
         <Route path='/settings' component={TweeterCloneSettings} exact />
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </Router>
   );

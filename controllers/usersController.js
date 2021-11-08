@@ -103,6 +103,7 @@ const userLogin = (req, res) => {
           coverPhoto: user.coverPhoto,
           following: user.following,
           followers: user.followers,
+          savedTweets: user.savedTweets,
         };
 
         //sign token
@@ -150,6 +151,9 @@ const addCoverPhoto = (req, res) => {
           birthYear: user.dateOfBirth.split(' ')[2],
           userImage: user.userImage,
           coverPhoto: user.coverPhoto,
+          following: user.following,
+          followers: user.followers,
+          savedTweets: user.savedTweets,
         };
 
         //sign token
@@ -223,19 +227,22 @@ const updateUserDetails = (req, res) => {
           userUpdate.password = hash;
 
           User.findByIdAndUpdate(userID, { $set: userUpdate }, { new: true })
-            .then((data) => {
+            .then((user) => {
               //create jwt payload
               const payload = {
-                id: data._id,
-                name: data.name,
-                email: data.email,
-                password: data.password,
-                about: data.about,
-                birthMonth: data.dateOfBirth.split(' ')[0],
-                birthDay: data.dateOfBirth.split(' ')[1],
-                birthYear: data.dateOfBirth.split(' ')[2],
-                userImage: data.userImage,
-                coverPhoto: data.coverPhoto,
+                id: user._id,
+                name: user.name,
+                email: user.email,
+                password: user.password,
+                about: user.about,
+                birthMonth: user.dateOfBirth.split(' ')[0],
+                birthDay: user.dateOfBirth.split(' ')[1],
+                birthYear: user.dateOfBirth.split(' ')[2],
+                userImage: user.userImage,
+                coverPhoto: user.coverPhoto,
+                following: user.following,
+                followers: user.followers,
+                savedTweets: user.savedTweets,
               };
 
               //sign token
@@ -252,19 +259,22 @@ const updateUserDetails = (req, res) => {
       });
     } else {
       User.findByIdAndUpdate(userID, { $set: userUpdate }, { new: true })
-        .then((data) => {
+        .then((user) => {
           //create jwt payload
           const payload = {
-            id: data._id,
-            name: data.name,
-            email: data.email,
-            password: data.password,
-            about: data.about,
-            birthMonth: data.dateOfBirth.split(' ')[0],
-            birthDay: data.dateOfBirth.split(' ')[1],
-            birthYear: data.dateOfBirth.split(' ')[2],
-            userImage: data.userImage,
-            coverPhoto: data.coverPhoto,
+            id: user._id,
+            name: user.name,
+            email: user.email,
+            password: user.password,
+            about: user.about,
+            birthMonth: user.dateOfBirth.split(' ')[0],
+            birthDay: user.dateOfBirth.split(' ')[1],
+            birthYear: user.dateOfBirth.split(' ')[2],
+            userImage: user.userImage,
+            coverPhoto: user.coverPhoto,
+            following: user.following,
+            followers: user.followers,
+            savedTweets: user.savedTweets,
           };
 
           //sign token
@@ -290,6 +300,40 @@ const getUser = (req, res) => {
   });
 };
 
+const getCurrentUser = (req, res) => {
+  User.findOne({ name: req.params.name })
+    .then((user) => {
+      if (user) {
+        // create jwt payload
+        const payload = {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          about: user.about,
+          password: user.password,
+          birthMonth: user.dateOfBirth.split(' ')[0],
+          birthDay: user.dateOfBirth.split(' ')[1],
+          birthYear: user.dateOfBirth.split(' ')[2],
+          userImage: user.userImage,
+          coverPhoto: user.coverPhoto,
+          following: user.following,
+          followers: user.followers,
+          savedTweets: user.savedTweets,
+        };
+
+        //sign token
+        jwt.sign(payload, keys, { expiresIn: 3600 * 2 }, (err, token) => {
+          res.json({
+            token: `Bearer ${token}`,
+          });
+        });
+      } else {
+        return res.status(400).json({ msg: 'No user found' });
+      }
+    })
+    .catch((err) => console.log(err));
+};
+
 const getAllUsers = (req, res) => {
   User.find().then((users) => {
     if (users) {
@@ -300,18 +344,18 @@ const getAllUsers = (req, res) => {
   });
 };
 
-const getCurrentUser = (req, res) => {
-  res.json({
-    id: req.user.id,
-    name: req.user.name,
-    email: req.user.email,
-    about: req.user.about,
-    password: req.user.password,
-    dateOfBirth: req.user.dateOfBirth,
-    userImage: req.user.userImage,
-    coverPhoto: req.user.coverPhoto,
-  });
-};
+// const getCurrentUser = (req, res) => {
+//   res.json({
+//     id: req.user.id,
+//     name: req.user.name,
+//     email: req.user.email,
+//     about: req.user.about,
+//     password: req.user.password,
+//     dateOfBirth: req.user.dateOfBirth,
+//     userImage: req.user.userImage,
+//     coverPhoto: req.user.coverPhoto,
+//   });
+// };
 
 module.exports = {
   userRegister,

@@ -33,6 +33,9 @@ const UserSchema = new Schema({
   following: {
     type: Array,
   },
+  savedTweets: {
+    type: Array,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

@@ -66,11 +66,11 @@ router.put(
   addCoverPhoto
 );
 
-// @Route GET api/users/current
+// @Route GET api/users/current/:name
 // @Desc Return current user route
 // @Access Private protected route
 router.get(
-  '/current',
+  '/current/:name',
   passport.authenticate('jwt', { session: false }),
   getCurrentUser
 );

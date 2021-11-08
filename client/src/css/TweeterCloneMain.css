@@ -1,9 +1,18 @@
+.TweeteCloneMainContainer {
+  /* border: 1px solid red; */
+  /* position: relative; */
+  /* height: 100vh; */
+}
+
 /* navbar styles */
 .TweeteCloneMainNavBar {
   display: flex;
   justify-content: space-between;
   background: #fff;
   /* padding: 10px 0; */
+  /* border: 1px solid red; */
+  /* position: fixed; */
+  /* width: 100%; */
 }
 
 .Brand {
@@ -20,6 +29,28 @@
   justify-content: space-around;
   align-items: flex-end;
 }
+
+.NavLink2 {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  background: #fff;
+  height: 50px;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  /* position: absolute;
+  bottom: 0;
+  z-index: 2; */
+  /* position: relative; */
+  /* padding-bottom: 50px; */
+}
+
+/* .TweeteCloneMainContainer .NavLink2 {
+  position: absolute;
+  bottom: 0px;
+} */
 
 .LinkItem {
   padding: 0 15px 10px 15px;
@@ -111,7 +142,7 @@
 .MenuText {
   /* border: 1px solid red; */
   margin: 0;
-  font-family: 'Noto Sans';
+  font-family: 'Noto Sans', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
@@ -128,4 +159,50 @@
 hr {
   margin: 15px 10px;
   border: 1px solid #e0e0e0;
+}
+
+.tweetActionMsgs {
+  /* border: 1px solid blue; */
+  /* display: flex; */
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  /* margin: 10px 2px 0 5px; */
+  border-radius: 5px;
+  padding: 8px;
+  background: #d1e7dd;
+  opacity: 0.8;
+  position: absolute;
+  position: fixed;
+  z-index: 2;
+  width: 100%;
+  top: 45px;
+}
+
+.actionMsg {
+  margin: 0;
+}
+
+.tweetActionMsgs i {
+  cursor: pointer;
+  font-size: 20px;
+}
+
+@media only screen and (max-width: 850px) {
+  .Brand {
+    margin-left: 10px;
+  }
+
+  .NavLink {
+    display: none;
+  }
+
+  .UserMenu {
+    /* border: 1px solid purple; */
+    margin-right: 10px;
+  }
+
+  .UserName {
+    display: none;
+  }
 }

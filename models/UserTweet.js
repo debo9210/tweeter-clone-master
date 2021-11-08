@@ -29,6 +29,7 @@ const UserTweetSchema = new Schema({
       },
     },
   ],
+  userLikedID: [],
   retweets: [
     {
       retweetedBy: {
@@ -37,13 +38,15 @@ const UserTweetSchema = new Schema({
     },
   ],
 
+  userRetweetedID: [],
+
   saved: [
-    {
-      user: {
-        type: Schema.Types.ObjectId,
-        ref: 'user',
-      },
-    },
+    // {
+    //   user: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'user',
+    //   },
+    // },
   ],
   comments: [
     {
@@ -69,12 +72,12 @@ const UserTweetSchema = new Schema({
         default: Date.now,
       },
       likes: [
-        {
-          user: {
-            type: Schema.Types.ObjectId,
-            ref: 'user',
-          },
-        },
+        // {
+        //   user: {
+        //     type: Schema.Types.ObjectId,
+        //     ref: 'user',
+        //   },
+        // },
       ],
     },
   ],

@@ -1,83 +1,50 @@
 import React, { useRef, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import UserPhotoComponent from './UserPhotoComponent';
-// import TweetsComponent from './TweetsComponent';
 import ActionItem from './ActionItem';
 import '../css/TweeterHome.css';
 import { addCoverPhoto } from '../redux/actions/updateUserAction';
 import { createUserTweet } from '../redux/actions/userTweetsAction';
-import { followUser } from '../redux/actions/userFollowAction';
 import {
-  tempTrendList,
   iconOptions,
-  selectActionHandler,
   actionItem,
+  tweetOptions,
 } from '../utils/tempTweetContainer';
+import { abbrNum } from '../utils/abbrNum';
 import Loader from './Loader';
 
 const TweeterCloneHome = ({
   user,
   allUsers,
-  otherUser,
+  // otherUser,
   showOthersProfile,
   othersProfileLinkHandler,
-  allUsersTweets,
+  userFollowersTweets,
   loading,
   specificUserTweets,
   ownerTweetsArray,
   specificTweetsLoading,
+  tweet_Replies,
+  tweet_Image,
+  tweet_Likes,
+  followBtnHandler,
+  allTweets,
+  windowWidth,
 }) => {
   const dispatch = useDispatch();
 
   const [userTweet, setUserTweet] = useState('');
   const [whoCanReply, setWhoCanReply] = useState('Everyone');
   const [tweetImage, setTweetImage] = useState('');
+  const [tweets, setTweets] = useState(true);
+  const [tweetsAndReplies, setTweetsAndReplies] = useState(false);
+  const [media, setMedia] = useState(false);
+  const [likes, setLikes] = useState(false);
 
   const whoCanReplyRef = useRef(null);
   const showWhoCanReplyRef = useRef(null);
 
-  //   console.log('hi');
-
-  const getOtherUserID = (otherUsers, name) => {
-    let otherUserID;
-    if (otherUsers) {
-      otherUsers
-        .filter((user) => user.name === name)
-        .map((user) => (otherUserID = user._id));
-    }
-    return otherUserID;
-  };
-
-  const followBtnHandler = (e) => {
-    const followBtn = document.querySelectorAll('.FollowBtn');
-
-    followBtn.forEach((btn) => {
-      if (btn.contains(e.target)) {
-        if (btn.children[1].textContent === 'Follow') {
-          followUser(
-            user.name,
-            getOtherUserID(allUsers, btn.dataset.name),
-            btn.children[1].textContent
-          );
-
-          btn.children[1].textContent = 'Following';
-          btn.children[0].textContent = '';
-        } else {
-          followUser(
-            user.name,
-            getOtherUserID(allUsers, btn.dataset.name),
-            btn.children[1].textContent
-          );
-
-          btn.children[1].textContent = 'Follow';
-          btn.children[0].textContent = 'person_add_alt_1';
-        }
-      }
-    });
-  };
-
-  // const tweetOwner =
-  //   ownerTweetsArray && ownerTweetsArray.slice(0, 1).map((twt) => twt.user);
+  const { user: otherUser } = useSelector((state) => state.getUser);
 
   const tweetOwnerID = (array) => {
     let ownerID;
@@ -91,8 +58,10 @@ const TweeterCloneHome = ({
     allUsers &&
     allUsers
       .filter((item) => item.name !== user.name)
+      .filter((item) => !item.followers.includes(user.id))
       .map((item, i) => (
         <div key={i} className='FollowSuggestionContainer'>
+          {/* {console.log(item)} */}
           <div className='FollowSuggestion'>
             <div
               className='TweetOwnerPic'
@@ -107,19 +76,30 @@ const TweeterCloneHome = ({
                 onClick={() => othersProfileLinkHandler(item.name)}
               >
                 {item.name}
+                {/* {console.log(item.name)} */}
               </p>
-              <p className='FollowSuggestionFollowers'>{item.numFollowers}</p>
+              <p className='FollowSuggestionFollowers'>
+                {abbrNum(item.followers.length, 2)} followers
+              </p>
             </div>
-            {/* {console.log(user.following)} */}
-            {/* <p>{user.name}</p> */}
-            <button
-              className='FollowBtn'
-              onClick={followBtnHandler}
-              data-name={item.name}
-            >
-              <i className='material-icons'>person_add_alt_1</i>
-              <span>Follow</span>
-            </button>
+
+            <div className='AsideFollowButton'>
+              <button
+                className='FollowBtn'
+                onClick={followBtnHandler}
+                data-name={item.name}
+                title={
+                  !user.following.includes(item._id) ? 'Follow' : 'Unfollow'
+                }
+              >
+                <i className='material-icons'>
+                  {!user.following.includes(item._id) ? 'person_add_alt_1' : ''}
+                </i>
+                <span>
+                  {!user.following.includes(item._id) ? 'Follow' : 'Following'}
+                </span>
+              </button>
+            </div>
           </div>
           <p className='SuggestionBio'>{item.about}</p>
 
@@ -175,6 +155,83 @@ const TweeterCloneHome = ({
     setTweetImage('');
   };
 
+  const selectActionHandler = (e) => {
+    const itemList = document.querySelectorAll('.ActionListItem');
+    itemList.forEach((item) => {
+      if (item.textContent === e.target.textContent) {
+        item.style.borderLeft = '2px solid #2f80ed';
+      } else {
+        item.style.borderLeft = 'unset';
+      }
+    });
+
+    // console.log(e.target.textContent);
+
+    switch (e.target.textContent) {
+      case 'Tweets':
+        setTweets(true);
+        setTweetsAndReplies(false);
+        setMedia(false);
+        setLikes(false);
+        break;
+      case 'Tweets & replies':
+        setTweets(false);
+        setTweetsAndReplies(true);
+        setMedia(false);
+        setLikes(false);
+        break;
+      case 'Media':
+        setTweets(false);
+        setTweetsAndReplies(false);
+        setMedia(true);
+        setLikes(false);
+        break;
+      case 'Likes':
+        setTweets(false);
+        setTweetsAndReplies(false);
+        setMedia(false);
+        setLikes(true);
+        break;
+      default:
+        setTweets(true);
+        break;
+    }
+  };
+
+  // get user tweet and split string with words that have hash tag
+  var regex = RegExp('[#]');
+  let wordList = [];
+  if (allTweets) {
+    const getSplitTweet = allTweets
+      .map((twt) => twt.userTweet)
+      .filter((twt) => twt.includes('#'));
+
+    for (let i = 0; i < getSplitTweet.length; i++) {
+      const wordSplit = getSplitTweet[i]
+        .split(' ')
+        .filter((el) => regex.test(el));
+
+      for (let j = 0; j < wordSplit.length; j++) {
+        wordList.push(wordSplit[j].toLowerCase());
+      }
+    }
+  }
+
+  // count number of items in word list and convert to key/value pair
+  const trendCount = wordList.reduce((allTrends, trend) => {
+    if (trend in allTrends) {
+      allTrends[trend]++;
+    } else {
+      allTrends[trend] = 1;
+    }
+    return allTrends;
+  }, {});
+
+  //sort trendlist by highest value
+  const trendList = Object.fromEntries(
+    Object.entries(trendCount).sort((a, b) => b[1] - a[1])
+  );
+
   return (
     <div>
       {showOthersProfile ? (
@@ -191,6 +248,7 @@ const TweeterCloneHome = ({
                     placeholder='What’s happening?'
                     onChange={(e) => setUserTweet(e.target.value)}
                     value={userTweet}
+                    spellCheck
                   ></textarea>
                 </div>
 
@@ -244,24 +302,32 @@ const TweeterCloneHome = ({
 
             {loading ? (
               <Loader />
-            ) : allUsersTweets && allUsersTweets.length === 0 ? (
+            ) : userFollowersTweets && userFollowersTweets.length === 0 ? (
               <h1>No tweets</h1>
             ) : (
-              allUsersTweets
+              userFollowersTweets
             )}
           </main>
+
           <aside className='TweeterHomeAside'>
             <div className='TrendsContainer'>
               <div className='Trends'>
                 <p>Trends for you</p>
               </div>
 
-              {tempTrendList.map((item, i) => (
-                <div key={i} className='TrendList'>
-                  <p className='TrendListTitle'>{Object.keys(item)}</p>
-                  <p className='TrendListText'>{Object.values(item)}</p>
-                </div>
-              ))}
+              {Object.keys(trendList)
+                .slice(0, 6)
+                .map((key) => [String(key), trendCount[key]])
+                .map((item, i) => (
+                  <div key={i} className='TrendList'>
+                    <p className='TrendListTitle'>{item[0]}</p>
+                    <p className='TrendListText'>
+                      {item[1] <= 1
+                        ? `${abbrNum(item[1], 2)} Tweet`
+                        : `${abbrNum(item[1], 2)} Tweets`}
+                    </p>
+                  </div>
+                ))}
             </div>
 
             <div className='WhoToFollowContainer'>
@@ -297,7 +363,12 @@ const TweeterCloneHome = ({
               </div>
 
               <div className='ShowProfile'>
-                <div className='OthersProfileAboutContainer'>
+                <div
+                  className='OthersProfileAboutContainer'
+                  // style={
+                  //   windowWidth <= 417 ? { width: '90%' } : { width: '65%' }
+                  // }
+                >
                   <div className='OthersProfileImageContainer'>
                     <div
                       className='OthersProfileImage'
@@ -306,15 +377,33 @@ const TweeterCloneHome = ({
                   </div>
                   <div className='OthersProfileAbout'>
                     <div className='ProfileAbout'>
-                      <p className='ProfileAboutName'>{otherUser.name}</p>
-                      <p className='ProfileAboutFollowing'>
-                        2,569 <span>Following</span>
+                      <p
+                        className='ProfileAboutName'
+                        style={{ marginTop: '25px' }}
+                      >
+                        {otherUser.name}
                       </p>
-                      <p className='ProfileAboutFollowing'>
-                        10.8K <span>Followers</span>
-                      </p>
+                      <div className='ProfileAboutFollowingContainer'>
+                        <p className='ProfileAboutFollowing'>
+                          {abbrNum(otherUser.following.length, 2)}{' '}
+                          <span>Following</span>
+                        </p>
+                        <p className='ProfileAboutFollowing'>
+                          {abbrNum(otherUser.followers.length, 2)}{' '}
+                          <span>
+                            {otherUser.followers.length === 1
+                              ? 'Follower'
+                              : 'Followers'}
+                          </span>
+                        </p>
+                      </div>
                     </div>
-                    <p className='ProfileAboutInfo'>{otherUser.about}</p>
+                    <p
+                      className='ProfileAboutInfo'
+                      style={{ marginTop: '20px' }}
+                    >
+                      {otherUser.about}
+                    </p>
                   </div>
 
                   {tweetOwnerID(ownerTweetsArray) === user.id ? (
@@ -325,9 +414,22 @@ const TweeterCloneHome = ({
                         className='FollowBtn'
                         onClick={followBtnHandler}
                         data-name={otherUser.name}
+                        title={
+                          !user.following.includes(otherUser._id)
+                            ? 'Follow'
+                            : 'Unfollow'
+                        }
                       >
-                        <i className='material-icons'>person_add_alt_1</i>
-                        <span>Follow</span>
+                        <i className='material-icons'>
+                          {!user.following.includes(otherUser._id)
+                            ? 'person_add_alt_1'
+                            : ''}
+                        </i>
+                        <span>
+                          {!user.following.includes(otherUser._id)
+                            ? 'Follow'
+                            : 'Following'}
+                        </span>
                       </button>
                     </div>
                   )}
@@ -344,7 +446,16 @@ const TweeterCloneHome = ({
                   </aside>
 
                   <main className='TweeterHome'>
-                    {specificTweetsLoading ? <Loader /> : specificUserTweets}
+                    {specificTweetsLoading && <Loader />}
+                    {tweets
+                      ? specificUserTweets
+                      : tweetsAndReplies
+                      ? tweetOptions(tweet_Replies, 'No tweet with Replies')
+                      : media
+                      ? tweetOptions(tweet_Image, 'No tweet with image')
+                      : likes
+                      ? tweetOptions(tweet_Likes, 'No Liked Tweet')
+                      : null}
                   </main>
                 </div>
               </div>

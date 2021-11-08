@@ -16,7 +16,7 @@ import {
   userCommentReducer,
   userRetweetReducer,
   getAllTweetReducer,
-  getSpecificUserTweetsReducer,
+  saveTweetReducer,
 } from './redux/reducers/userTweetReducer';
 
 const reducers = combineReducers({
@@ -30,7 +30,7 @@ const reducers = combineReducers({
   getAllTweets: getAllTweetReducer,
   userComment: userCommentReducer,
   userRetweet: userRetweetReducer,
-  specificUserTweets: getSpecificUserTweetsReducer,
+  saveTweet: saveTweetReducer,
 });
 
 const initialState = {};
