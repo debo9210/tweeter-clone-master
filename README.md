@@ -12,7 +12,7 @@
       Demo
     </a>
     <span> | </span>
-    <a href="https://{your-url-to-the-solution}">
+    <a href="https://debo9210-tweeter-clone-app.herokuapp.com/">
       Solution
     </a>
     <span> | </span>
