@@ -12,6 +12,7 @@ import {
 } from '../utils/tempTweetContainer';
 import { abbrNum } from '../utils/abbrNum';
 import Loader from './Loader';
+import noImage from '../images/no-image-icon-15.png';
 
 const TweeterCloneHome = ({
   user,
@@ -105,7 +106,13 @@ const TweeterCloneHome = ({
 
           <div
             className='CoverPhoto'
-            style={{ backgroundImage: `url(${item.coverPhoto})` }}
+            style={
+              item.coverPhoto === undefined
+                ? { backgroundImage: `url(${noImage})` }
+                : {
+                    backgroundImage: `url(${item.coverPhoto})`,
+                  }
+            }
           ></div>
         </div>
       ));
@@ -302,7 +309,8 @@ const TweeterCloneHome = ({
 
             {loading ? (
               <Loader />
-            ) : userFollowersTweets && userFollowersTweets.length === 0 ? (
+            ) : userFollowersTweets.props.tweetsArray &&
+              userFollowersTweets.props.tweetsArray.length === 0 ? (
               <h1>No tweets</h1>
             ) : (
               userFollowersTweets

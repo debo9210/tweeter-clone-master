@@ -166,7 +166,7 @@ const TweeterCloneUserProfile = ({
               <main className='TweeterHome'>
                 {/* {specificTweetsLoading && <Loader />} */}
                 {tweets
-                  ? userTweets
+                  ? tweetOptions(userTweets, 'No tweet yet')
                   : tweetsAndReplies
                   ? tweetOptions(tweet_Replies, 'No tweet with Replies')
                   : media
