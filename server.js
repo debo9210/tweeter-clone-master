@@ -34,9 +34,9 @@ app.use(passport.session());
 //Passport config
 require('./config/passportStrategy')(passport);
 
-app.get('/', (req, res) => {
-  res.send('Welcome to tweeter clone');
-});
+// app.get('/', (req, res) => {
+//   res.send('Welcome to tweeter clone');
+// });
 
 //Use routes
 app.use('/api/users', userRoutes);
